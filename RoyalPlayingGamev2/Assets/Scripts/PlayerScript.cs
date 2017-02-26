@@ -13,45 +13,77 @@ public class PlayerScript : MonoBehaviour {
     private Rigidbody2D rigidbody;
 
     private Animator animator;
+    
+    public float jumpForce = 700f;
+    public Transform groundCheck;
+    public float groundRadius = 0.2f;
+    public LayerMask whatIsGround;
 
     private Directions WalkDirection;
+    private float move;
+    private bool grounded = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         rigidbody = GetComponent<Rigidbody2D>();
 
-        WalkDirection = Directions.None;
+        WalkDirection = Directions.NoneRight;
     }
-
-    private void Update()
+    void FixedUpdate()
     {
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            animator.SetBool("is_walking", true);
-            WalkDirection = Directions.Right;
-        }
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            animator.SetBool("is_walking", false);
-            WalkDirection = Directions.None;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            animator.SetBool("is_walking", true);
-            WalkDirection = Directions.Left;
-        }
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            animator.SetBool("is_walking", false);
-            WalkDirection = Directions.None;
-        }
 
-        if (WalkDirection!= Directions.None)
-            Move(WalkDirection);
+        grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+
+        //if (!Input.GetKeyDown(KeyCode.D) && WalkDirection == Directions.Right)
+        //    move = 0f;
+        //if (!Input.GetKeyDown(KeyCode.A) && WalkDirection == Directions.Left)
+            move = 0f;
+        if (Input.GetKeyUp(KeyCode.D) && move > 0 || Input.GetKeyUp(KeyCode.A) && move < 0)
+            move = 0f;
+        if (Input.GetKey(KeyCode.D))
+            move = 1f;
+        if (Input.GetKey(KeyCode.A))
+            move = -1f;
+
+    }
+    private void Update()
+    {
+        if (grounded && (Input.GetKeyDown(KeyCode.W)))
+        {
+            rigidbody.AddForce(new Vector2(0f, jumpForce));
+        }
+        rigidbody.velocity = new Vector2(move * Speed, rigidbody.velocity.y);
+        if (move > 0)
+            WalkDirection = Directions.Right;
+        else if (move < 0)
+            WalkDirection = Directions.Left;
+        else if (WalkDirection == Directions.Right)
+            WalkDirection = Directions.NoneRight;
+        else if (WalkDirection == Directions.Left)
+            WalkDirection = Directions.NoneLeft;
+
+        switch (WalkDirection)
+        {
+            case Directions.Left:
+                //Debug.Log("Left");
+                animator.SetBool("is_walking_left", true);
+                animator.SetBool("is_walking_right", false);
+                break;
+            case Directions.Right:
+                //Debug.Log("Right");
+                animator.SetBool("is_walking_left", false);
+                animator.SetBool("is_walking_right", true);
+                break;
+            case Directions.NoneRight:
+            case Directions.NoneLeft:
+                animator.SetBool("is_walking_left", false);
+                animator.SetBool("is_walking_right", false);
+                break;
+        }
     }
 
     private void Move(Directions d)
@@ -82,17 +114,26 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
-    protected IEnumerator SmoothMoment(Vector3 end)
+    void Flip(Directions d)
     {
-        float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
-
-        while (sqrRemainingDistance < float.Epsilon)
-        {
-            Vector3 newPos = Vector3.MoveTowards(rigidbody.position, end, Speed * Time.deltaTime);
-            rigidbody.MovePosition(newPos);
-            sqrRemainingDistance = (transform.position - end).sqrMagnitude;
-            yield return null;
-        }
+        Debug.Log("Flip");
+        WalkDirection = d;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
+
+    //protected IEnumerator SmoothMoment(Vector3 end)
+    //{
+    //    float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
+
+    //    while (sqrRemainingDistance < float.Epsilon)
+    //    {
+    //        Vector3 newPos = Vector3.MoveTowards(rigidbody.position, end, Speed * Time.deltaTime);
+    //        rigidbody.MovePosition(newPos);
+    //        sqrRemainingDistance = (transform.position - end).sqrMagnitude;
+    //        yield return null;
+    //    }
+    //}
 
 }

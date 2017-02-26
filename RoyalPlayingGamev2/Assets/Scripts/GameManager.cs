@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Directions { Left, Right, None}
+public enum Directions { Left, Right, NoneLeft, NoneRight}
 public class GameManager : MonoBehaviour {
 
     
