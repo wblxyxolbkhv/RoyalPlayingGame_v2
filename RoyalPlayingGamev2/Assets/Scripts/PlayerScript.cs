@@ -10,7 +10,7 @@ public class PlayerScript : MonoBehaviour {
 
 
     private BoxCollider2D boxCollider;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rigidbody2d;
 
     private Animator animator;
     
@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour {
 
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
 
         WalkDirection = Directions.NoneRight;
     }
@@ -54,9 +54,9 @@ public class PlayerScript : MonoBehaviour {
     {
         if (grounded && (Input.GetKeyDown(KeyCode.W)))
         {
-            rigidbody.AddForce(new Vector2(0f, jumpForce));
+            rigidbody2d.AddForce(new Vector2(0f, jumpForce));
         }
-        rigidbody.velocity = new Vector2(move * Speed, rigidbody.velocity.y);
+        rigidbody2d.velocity = new Vector2(move * Speed, rigidbody2d.velocity.y);
         if (move > 0)
             WalkDirection = Directions.Right;
         else if (move < 0)
@@ -110,7 +110,7 @@ public class PlayerScript : MonoBehaviour {
         if (hit.transform == null)
         {
             //StartCoroutine(SmoothMoment(end));
-            rigidbody.MovePosition(end);
+            //rigidbody.MovePosition(end);
         }
     }
 
