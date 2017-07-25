@@ -80,6 +80,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MainCameraScript.cs" />
+    <Compile Include="Assets\Scripts\MovingObjectScript.cs" />
+    <Compile Include="Assets\Scripts\MovingSpellScript.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
     <Compile Include="Assets\Scripts\RepeatSpriteBoundary.cs" />
     <Compile Include="Assets\Scripts\ScaleScript.cs" />

@@ -36,6 +36,10 @@ public class PlayerScript : MonoBehaviour {
     {
 
 
+        if (grounded && (Input.GetKeyDown(KeyCode.W)))
+        {
+            rigidbody2d.AddForce(new Vector2(0f, jumpForce));
+        }
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 
         //if (!Input.GetKeyDown(KeyCode.D) && WalkDirection == Directions.Right)
@@ -52,10 +56,6 @@ public class PlayerScript : MonoBehaviour {
     }
     private void Update()
     {
-        if (grounded && (Input.GetKeyDown(KeyCode.W)))
-        {
-            rigidbody2d.AddForce(new Vector2(0f, jumpForce));
-        }
         rigidbody2d.velocity = new Vector2(move * Speed, rigidbody2d.velocity.y);
         if (move > 0)
             WalkDirection = Directions.Right;
@@ -114,26 +114,6 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
-    void Flip(Directions d)
-    {
-        Debug.Log("Flip");
-        WalkDirection = d;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
-    }
-
-    //protected IEnumerator SmoothMoment(Vector3 end)
-    //{
-    //    float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
-
-    //    while (sqrRemainingDistance < float.Epsilon)
-    //    {
-    //        Vector3 newPos = Vector3.MoveTowards(rigidbody.position, end, Speed * Time.deltaTime);
-    //        rigidbody.MovePosition(newPos);
-    //        sqrRemainingDistance = (transform.position - end).sqrMagnitude;
-    //        yield return null;
-    //    }
-    //}
+   
 
 }
