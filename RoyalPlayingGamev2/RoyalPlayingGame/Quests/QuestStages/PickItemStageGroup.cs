@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using RoyalPlayingGame.Items;
+
+namespace RoyalPlayingGame.Quests.QuestStages
+{
+    public class PickItemStageGroup
+    {
+        public PickItemStageGroup()
+        {
+
+        }
+        public PickItemStageGroup(Item item, string objective)
+        {
+            Item = item;
+            Objective = objective;
+        }
+        public Item Item { get; set; }
+        public string Objective { get; set; }
+    }
+}

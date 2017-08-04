@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace RoyalPlayingGame.Exceptions
+{
+    public class LoadDialogException: Exception
+    {
+        public override string Message
+        {
+            get
+            {
+                return "Ошибка при загрузке диалога из XML-файла";
+            }
+        }
+    }
+}

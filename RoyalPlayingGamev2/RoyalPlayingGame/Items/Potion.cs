@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace RoyalPlayingGame.Items
+{
+
+    public enum PotionType { MP, HP }
+    /// <summary>
+    /// Зелья, автор: Жифарский Д.А.
+    /// </summary>
+    public class Potion : Item
+    {
+        public Potion(string iD, string name, Effect.Effect effect, uint potionLvl, PotionType PType, ushort amount, ushort maxAmount) : base(iD, name, maxAmount, amount, potionLvl, effect)
+        {
+            this.PType = PType;
+        }
+        public Potion(string iD, string name, Effect.Effect effect, uint potionLvl, PotionType PType, ushort amount) : base(iD,name, 10, amount, potionLvl, effect)
+        {
+            this.PType = PType;
+        }
+
+        public PotionType PType { get; protected set; }
+
+    }
+}

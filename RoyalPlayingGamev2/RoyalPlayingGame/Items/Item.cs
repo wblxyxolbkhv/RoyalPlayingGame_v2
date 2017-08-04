@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace RoyalPlayingGame.Items
+{
+    /// <summary>
+    /// Базовый класс для всех предметов в игре, автор: Жифарский Д.А.
+    /// </summary>
+    public enum ItemType { Armor, Weapon, Potion, Other }
+    public class Item
+    {
+        public Item(string ID, string name, int maxAmount, int amount, uint itemLvl, Effect.Effect effect)
+        {
+            this.ID = ID;
+            Name = name;
+            Lvl = itemLvl;
+            MaxAmount = maxAmount;
+            Amount = amount;
+            ItemEffect = effect;
+            IsAQuestItem = false;
+        }
+
+        public Item(string ID, string name, int maxAmount, int amount, uint itemLvl, ItemType type)
+        {
+            this.ID = ID;
+            Name = name;
+            MaxAmount = maxAmount;
+            Lvl = itemLvl;
+            Amount = amount;
+            IsAQuestItem = false;
+            Type = type;
+        }
+
+        /// <summary>
+        /// конструктор для квестовых предметов
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="name"></param>
+        /// <param name="maxAmount"></param>
+        public Item(string ID, string name,  int maxAmount)
+        {
+            this.ID = ID;
+            Name = name;
+            MaxAmount = maxAmount;
+            Amount = 0;
+            IsAQuestItem = true;
+        }
+
+        //public int Position { get; set; }
+        public ItemType Type { get; set; }
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public int MaxAmount { get; protected set; }
+        public int Amount { get; set; }
+        public uint Lvl { get; set; }
+        public bool IsAQuestItem { get; set; }
+        public string Description { get; set; }
+        public Effect.Effect ItemEffect { get; set; }
+        public Action<bool> UseItemExternal { get; set; }
+
+
+        public virtual void Use()
+        {
+            if (UseItemExternal != null)
+                UseItemExternal(true);
+        }
+    }
+}
