@@ -23,13 +23,13 @@ public class PlayerScript : MonoBehaviour {
     private float move;
     private bool grounded = false;
 
+    public ScaleScript scale;
+    public int Health = 100;
     // Use this for initialization
     void Start () {
-
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         rigidbody2d = GetComponent<Rigidbody2D>();
-
         WalkDirection = Directions.NoneRight;
     }
     void FixedUpdate()
@@ -56,6 +56,7 @@ public class PlayerScript : MonoBehaviour {
     }
     private void Update()
     {
+        scale.Health = Health;
         rigidbody2d.velocity = new Vector2(move * Speed, rigidbody2d.velocity.y);
         if (move > 0)
             WalkDirection = Directions.Right;
