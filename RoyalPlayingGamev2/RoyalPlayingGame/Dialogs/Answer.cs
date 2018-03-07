@@ -15,23 +15,17 @@ namespace RoyalPlayingGame.Dialogs
     {
         public Answer() : base()
         {
-            PlayerPhrases = new List<string>();
-        }
-        public NPCReplic NextReplic
-        {
-            get;
-            set;
         }
         /// <summary>
         /// набор фраз, говоримые подряд персонажем
         /// </summary>
-        public List<string> PlayerPhrases
+        public string Phrase
         {
-            get;
+            get; set;
         }
-        public override Replic GetNextReplic()
+        public override string ToString()
         {
-            return NextReplic;
+            return Phrase;
         }
     }
 }

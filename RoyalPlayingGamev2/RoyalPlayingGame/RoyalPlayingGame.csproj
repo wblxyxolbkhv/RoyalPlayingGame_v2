@@ -39,6 +39,7 @@
     <Compile Include="DeadUnitListener.cs" />
     <Compile Include="Dialogs\Answer.cs" />
     <Compile Include="Dialogs\Dialog.cs" />
+    <Compile Include="Dialogs\DialogListener.cs" />
     <Compile Include="Dialogs\NPCReplic.cs" />
     <Compile Include="Dialogs\PlayerChoice.cs" />
     <Compile Include="Dialogs\Replic.cs" />
@@ -49,12 +50,13 @@
     <Compile Include="Exceptions\NoManaException.cs" />
     <Compile Include="Exceptions\NotAQuestItemException.cs" />
     <Compile Include="Exceptions\SpellCoolDownException.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="ItemsManager.cs" />
     <Compile Include="Items\Inventory.cs" />
     <Compile Include="JournalNotesPublisher.cs" />
     <Compile Include="Journal\JournalNote.cs" />
     <Compile Include="Journal\PlayerJournal.cs" />
-    <Compile Include="QuestListener.cs" />
+    <Compile Include="QuestManager.cs" />
     <Compile Include="Quests\Quest.cs" />
     <Compile Include="Quests\QuestStage.cs" />
     <Compile Include="Quests\QuestStages\KillUnitStage.cs" />

@@ -29,9 +29,7 @@ public class PlayerScript : UnitScript {
 
 
 
-    //public RoyalPlayingGame.Units.Player player;
-    
-
+    public GameObject rightFreePoint;
 
 
     // Use this for initialization
@@ -57,12 +55,10 @@ public class PlayerScript : UnitScript {
         if (Input.GetKey(KeyCode.D))
         {
             move = 1f;
-            //Debug.Log("D");
         }
         if (Input.GetKey(KeyCode.A))
         {
             move = -1f;
-            //Debug.Log("A");
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -71,27 +67,41 @@ public class PlayerScript : UnitScript {
     }
     protected override void Update()
     {
-        
-
         base.Update();
 
+        Vector2 direction = transform.position;
 
         switch (WalkDirection)
         {
             case Directions.Left:
                 animator.SetBool("is_walking_left", true);
                 animator.SetBool("is_walking_right", false);
+                direction = new Vector2(-1, 0);
                 break;
             case Directions.Right:
                 animator.SetBool("is_walking_left", false);
                 animator.SetBool("is_walking_right", true);
+                direction = new Vector2(1, 0);
                 break;
             case Directions.NoneRight:
             case Directions.NoneLeft:
+                direction = WalkDirection == Directions.NoneLeft ? new Vector2(-1, 0) : new Vector2(1, 0);
                 animator.SetBool("is_walking_left", false);
                 animator.SetBool("is_walking_right", false);
                 break;
         }
+
+        RaycastHit2D hit = Physics2D.Raycast(rightFreePoint.transform.position, direction, 4);
+        if (hit.collider != null)
+        {
+            var talker = hit.collider.gameObject.GetComponent<Talker>();
+            if (talker != null)
+                DialogManager.Instance.PotentialTalker = talker;
+            else
+                DialogManager.Instance.PotentialTalker = null;
+        }
+        else
+            DialogManager.Instance.PotentialTalker = null;
 
     }
     

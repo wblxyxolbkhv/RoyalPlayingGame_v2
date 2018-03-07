@@ -14,19 +14,14 @@ namespace RoyalPlayingGame.Dialogs
     {
         public NPCReplic() : base()
         {
-            Phrases = new List<string>();
         }
-        public List<string> Phrases
+        public string Phrase
         {
-            get;
+            get; set;
         }
-        public PlayerChoice NextChoice
+        public override string ToString()
         {
-            get;set;
-        }
-        public override Replic GetNextReplic()
-        {
-            return NextChoice;
+            return Phrase;
         }
     }
 }

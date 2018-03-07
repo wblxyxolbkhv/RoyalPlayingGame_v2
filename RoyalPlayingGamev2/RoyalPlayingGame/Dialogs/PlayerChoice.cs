@@ -13,12 +13,11 @@ namespace RoyalPlayingGame.Dialogs
     {
         public PlayerChoice() : base()
         {
-            Answers = new List<Answer>();
             Duration = 100000;
         }
         public List<Answer> Answers
         {
-            get;
+            get; set;
         }
         public override Replic GetNextReplic()
         {

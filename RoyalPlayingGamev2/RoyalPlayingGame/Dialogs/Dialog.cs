@@ -11,7 +11,7 @@ namespace RoyalPlayingGame.Dialogs
 {
     public class Dialog
     {
-        Replic RootReplic
+        protected Replic RootReplic
         {
             get;set;
         }
@@ -32,7 +32,7 @@ namespace RoyalPlayingGame.Dialogs
         /// загрузка диалога из xml
         /// </summary>
         /// <param name="path"></param>
-        public void LoadDialog(string path)
+        public virtual void LoadDialog(string path)
         {
             XmlDocument dialogXml = new XmlDocument();
             dialogXml.Load(path);
@@ -44,6 +44,7 @@ namespace RoyalPlayingGame.Dialogs
             ID = rootElement.Attributes.GetNamedItem("id").Value;
 
             #region Парсинг xml
+            /*
             foreach (XmlNode xnode in rootElement)
             {
                 switch(xnode.Name)
@@ -107,9 +108,14 @@ namespace RoyalPlayingGame.Dialogs
                         }
                 }
             }
+            */
             #endregion
 
             #region Построение графа диалога
+            //
+            // парсинг из xml временно зайдействован не будет
+            //
+            /*
             foreach (NPCReplic replic in NPCReplics)
             {
                 foreach (PlayerChoice pc in choices)
@@ -140,6 +146,7 @@ namespace RoyalPlayingGame.Dialogs
                     RootReplic = pc;
             }
             CurrentReplic = RootReplic;
+            */
             #endregion
         }
         public void OnTimerTick(int deltaTime)
@@ -153,9 +160,9 @@ namespace RoyalPlayingGame.Dialogs
             if (CurrentReplic.CurrentDuration > CurrentReplic.Duration)
             {
                 if (CurrentReplic.PassedQuest != null)
-                    QuestListener.PassQuest(CurrentReplic.PassedQuest);
+                    QuestManager.CompleteQuest(CurrentReplic.PassedQuest.ID);
                 if (CurrentReplic.ReceiveQuest != null)
-                    QuestListener.ReceiveQuest(CurrentReplic.ReceiveQuest);
+                    QuestManager.ReceiveQuest(CurrentReplic.ReceiveQuest.ID);
                 CurrentReplic = CurrentReplic.GetNextReplic();
                 if (CurrentReplic!=null)
                     CurrentReplic.CurrentDuration = 0;

@@ -51,7 +51,7 @@ namespace RoyalPlayingGame.Quests
                 CurrentQuestStage = QuestStages[QuestStages.IndexOf(CurrentQuestStage) + 1];
                 CurrentQuestStage.QuestStageCompleted += OnNextStage;
             }
-            else QuestListener.QuestComplete(ID);
+            else QuestManager.CompleteQuest(ID);
         }
 
         public List<JournalNote> Notes { get; set; }
@@ -64,10 +64,10 @@ namespace RoyalPlayingGame.Quests
             {
                 isComplited = value;
                 if (!string.IsNullOrEmpty(ShownReplic))
-                    QuestListener.ReplicShow(Convert.ToInt32(ShownReplic));
+                    QuestManager.ReplicShow(Convert.ToInt32(ShownReplic));
 
                 if (!string.IsNullOrEmpty(HiddenReplic))
-                    QuestListener.ReplicHide(Convert.ToInt32(HiddenReplic));
+                    QuestManager.ReplicHide(Convert.ToInt32(HiddenReplic));
             }
         }
         // флаг для обозначения того, что квест помечен как активный и выведен на главный экран

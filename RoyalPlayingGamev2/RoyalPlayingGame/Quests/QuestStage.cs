@@ -57,12 +57,12 @@ namespace RoyalPlayingGame.Quests
         public void CallQSCEvent()
         {
             if (!string.IsNullOrEmpty(ShownReplic))
-                QuestListener.ReplicShow(Convert.ToInt32(ShownReplic));
+                QuestManager.ReplicShow(Convert.ToInt32(ShownReplic));
 
             if (!string.IsNullOrEmpty(HiddenReplic))
-                QuestListener.ReplicHide(Convert.ToInt32(HiddenReplic));
+                QuestManager.ReplicHide(Convert.ToInt32(HiddenReplic));
 
-            QuestListener.CompleteQuestStage(ID);
+            QuestManager.CompleteQuestStage(ID);
             if (QuestStageCompleted != null)
                 QuestStageCompleted(true);
             IsCompleted = true;

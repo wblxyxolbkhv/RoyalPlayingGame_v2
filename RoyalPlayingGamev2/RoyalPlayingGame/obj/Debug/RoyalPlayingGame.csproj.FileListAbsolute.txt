@@ -58,4 +58,3 @@ C:\Users\юшевенифени\Desktop\Visual Studio\RoyalPlayingGame_v2\RoyalP
 C:\Users\юшевенифени\Desktop\Visual Studio\RoyalPlayingGame_v2\RoyalPlayingGamev2\RoyalPlayingGame\obj\Debug\RoyalPlayingGame.pdb
 C:\Users\юшевенифени\Desktop\Visual Studio\RoyalPlayingGame_v2\RoyalPlayingGamev2\Assets\Plugins\RoyalPlayingGame.dll
 C:\Users\юшевенифени\Desktop\Visual Studio\RoyalPlayingGame_v2\RoyalPlayingGamev2\Assets\Plugins\RoyalPlayingGame.pdb
-C:\Users\юшевенифени\Desktop\Visual Studio\RoyalPlayingGame_v2\RoyalPlayingGamev2\RoyalPlayingGame\obj\Debug\RoyalPlayingGame.csprojResolveAssemblyReference.cache

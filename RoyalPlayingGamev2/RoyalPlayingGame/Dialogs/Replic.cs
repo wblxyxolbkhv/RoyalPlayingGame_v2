@@ -1,4 +1,5 @@
 ﻿using System;
+using RoyalPlayingGame.Quests;
 /* Назначение: Базовый класс для реплик
  * предполагается, что диалог будет графом из реплик
  * Автор: Никитенко А.В.
@@ -9,8 +10,8 @@ namespace RoyalPlayingGame.Dialogs
     {
         public Replic()
         {
-            QuestListener.ReplicHidden += OnAnyReplicHidden;
-            QuestListener.ReplicShown += OnAnyReplicShown;
+            QuestManager.ReplicHidden += OnAnyReplicHidden;
+            QuestManager.ReplicShown += OnAnyReplicShown;
 
             IsHidden = false;
         }
@@ -26,16 +27,21 @@ namespace RoyalPlayingGame.Dialogs
             if (replicID.ToString() == ID)
                 IsHidden = true;
         }
-
+        /// <summary>
+        /// используется для формирования графа из реплик
+        /// </summary>
+        /// <param name="replic"></param>
+        /// <returns></returns>
+        public Replic AddNext(Replic replic)
+        {
+            this.Next = replic;
+            return replic;
+        }
         public string ID
         {
             get;set;
         }
-        public string Number
-        {
-            get; set;
-        }
-        public string Next
+        public Replic Next
         {
             get; set;
         }
@@ -50,12 +56,19 @@ namespace RoyalPlayingGame.Dialogs
         /// <summary>
         /// квести, который начинается с этой репликой (его ID)
         /// </summary>
-        public string PassedQuest { get; set; } = null;
+        public Quest PassedQuest { get; set; } = null;
         /// <summary>
         /// квести, который заканчивается с этой репликой (его ID)
         /// </summary>
-        public string ReceiveQuest { get; set; } = null;
-        public abstract Replic GetNextReplic();
+        public Quest ReceiveQuest { get; set; } = null;
+        /// <summary>
+        /// возвращает следующую за этой реплику
+        /// </summary>
+        /// <returns></returns>
+        public virtual Replic GetNextReplic()
+        {
+            return Next;
+        }
 
         public bool IsHidden { get; set; }
     }
