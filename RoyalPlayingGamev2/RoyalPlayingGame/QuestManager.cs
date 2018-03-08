@@ -47,11 +47,11 @@ namespace RoyalPlayingGame
             if (ActiveQuests.Find(q => q.ID == questID) == null)
             {
                 var quest = QuestRepository.Find(q => q.ID == questID);
-                QuestReceived?.Invoke(questID);
                 ActiveQuests.ForEach(q => q.IsActive = false);
                 ActiveQuests.Add(quest);
-                quest.Start();
                 quest.IsActive = true;
+                quest.OnQuestStarted();
+                QuestReceived?.Invoke(questID);
             }
         }
         

@@ -11,6 +11,7 @@ namespace RoyalPlayingGame.Dialogs
         public Replic()
         {
             GlobalListener.ReplicHidden += OnAnyReplicHidden;
+            GlobalListener.ReplicShown += OnAnyReplicShown;
 
             IsHidden = false;
         }
@@ -23,7 +24,7 @@ namespace RoyalPlayingGame.Dialogs
 
         private void OnAnyReplicHidden(string replicID)
         {
-            if (replicID.ToString() == ID)
+            if (replicID == ID)
                 IsHidden = true;
         }
         /// <summary>

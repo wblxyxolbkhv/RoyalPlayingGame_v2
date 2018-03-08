@@ -72,12 +72,7 @@ namespace RoyalPlayingGame.Quests
             }
         }
         // флаг для обозначения того, что квест помечен как активный и выведен на главный экран
-        private bool isActive;
-        public bool IsActive
-        {
-            get { return isActive; }
-            set { isActive = value; }
-        }
+        public bool IsActive { get; set; }
         private Player Player { get; set; }
         public List<QuestStage> QuestStages { get; set; }
         private QuestStage currentQuestStage;
@@ -108,11 +103,6 @@ namespace RoyalPlayingGame.Quests
                 CurrentQuestStage.QuestStageCompleted += OnNextStage;
             }
         }
-        public void Start()
-        {
-            CurrentQuestStage = QuestStages[0];
-        }
-
         public virtual void LoadQuest(string path)
         {
             XmlDocument questXml = new XmlDocument();
@@ -290,6 +280,19 @@ namespace RoyalPlayingGame.Quests
                 }
                 //StageID = ID + StageID;
             }
+
+        }
+
+
+
+
+
+        public virtual void OnQuestStarted()
+        {
+
+        }
+        public virtual void OnQuestEnded()
+        {
 
         }
 

@@ -38,11 +38,18 @@ public class DebugBearDialog : Dialog {
             Duration = 2000,
             Next = r2
         };
+        var aa1 = new Answer
+        {
+            ID = "DBG_end_replic",
+            Phrase = "Готово, я сходил вперед и назад!",
+            Duration = 2000,
+            IsHidden = true
+        };
         var choice = new PlayerChoice
         {
             Answers = new List<Answer>
             {
-                a1, a2, a3
+                a1, a2, a3, aa1
             }
         };
         RootReplic.AddNext(choice);

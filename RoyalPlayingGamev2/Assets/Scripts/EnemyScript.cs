@@ -12,8 +12,7 @@ public class EnemyScript : UnitScript {
 
 
     public Transform eyes;
-
-    private Enemy enemy = new Enemy();
+    
 
 
     // Use this for initialization

@@ -6,6 +6,7 @@ public class MovingObjectScript : MonoBehaviour {
     
     protected Rigidbody2D rigidbody2d;
     protected Animator animator;
+    protected Collider2D collider2d;
 
     protected Directions WalkDirection;
     protected float move = 0;
@@ -25,7 +26,8 @@ public class MovingObjectScript : MonoBehaviour {
         {
 
         }
-        rigidbody2d.velocity = new Vector2(move * Speed, rigidbody2d.velocity.y);
+        if (rigidbody2d.bodyType != RigidbodyType2D.Static)
+            rigidbody2d.velocity = new Vector2(move * Speed, rigidbody2d.velocity.y);
         if (move > 0)
         {
             WalkDirection = Directions.Right;

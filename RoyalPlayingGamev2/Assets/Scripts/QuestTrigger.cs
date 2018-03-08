@@ -16,10 +16,9 @@ public class QuestTrigger : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    void OnCollisionEnter2D(Collision2D coll)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (coll.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
             GlobalListener.SomeTriggerDetected(TriggerID);
     }
 }

@@ -34,8 +34,8 @@ namespace RoyalPlayingGame.Units
         protected int realPhysicalDamageReduction;
         protected int realMagicalDamageReduction;
         public event Action<bool> Death;
-        public static event QuestItemHendler QuestItemPicked;
-        public static event QuestItemHendler QuestItemDroped;
+        //public static event QuestItemHendler QuestItemPicked;
+        //public static event QuestItemHendler QuestItemDroped;
         public bool IsAlive { get; set; }
 
         public int Health { get; set; }

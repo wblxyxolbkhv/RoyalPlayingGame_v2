@@ -42,8 +42,7 @@ public class U_DialogManager : MonoBehaviour
     float replicHeight = 100;
     float marginBottom = 50;
     float marginTop = 50;
-
-    float buttonHeight = 30;
+    
     float buttonWidth = 500;
 
     void OnGUI()
@@ -82,6 +81,8 @@ public class U_DialogManager : MonoBehaviour
                 for (int i = 0; i < choice.Answers.Count; i++)
                 {
                     var ans = choice.Answers[i];
+                    if (ans.IsHidden)
+                        continue;
                     var height = buttonStyle.CalcHeight(new GUIContent(ans.ToString()), buttonWidth);
                     if (GUI.Button(new Rect(Screen.width / 2 - replicWidth / 2, margin, buttonWidth, height),
                         ans.ToString()))

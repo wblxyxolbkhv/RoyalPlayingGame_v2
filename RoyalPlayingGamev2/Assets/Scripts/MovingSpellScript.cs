@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingSpellScript : MovingObjectScript {
-
-    Collider2D collider2d;
+    
 
     // Use this for initialization
-    protected virtual void Start()
+    protected override void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();

@@ -54,7 +54,7 @@ C:\Users\Дмитрий\Desktop\Projects\RoyalPlaingGame\RoyalPlayingGame\RoyalP
 C:\Users\Дмитрий\Desktop\Projects\RoyalPlaingGame\RoyalPlayingGame\RoyalPlayingGame\obj\Debug\RoyalPlayingGame.pdb
 C:\Users\юшевенифени\Desktop\Visual Studio\RoyalPlayingGame_v2\RoyalPlayingGamev2\RoyalPlayingGame\bin\Debug\RoyalPlayingGame.dll
 C:\Users\юшевенифени\Desktop\Visual Studio\RoyalPlayingGame_v2\RoyalPlayingGamev2\RoyalPlayingGame\bin\Debug\RoyalPlayingGame.pdb
-C:\Users\юшевенифени\Desktop\Visual Studio\RoyalPlayingGame_v2\RoyalPlayingGamev2\RoyalPlayingGame\obj\Debug\RoyalPlayingGame.dll
-C:\Users\юшевенифени\Desktop\Visual Studio\RoyalPlayingGame_v2\RoyalPlayingGamev2\RoyalPlayingGame\obj\Debug\RoyalPlayingGame.pdb
 C:\Users\юшевенифени\Desktop\Visual Studio\RoyalPlayingGame_v2\RoyalPlayingGamev2\Assets\Plugins\RoyalPlayingGame.dll
 C:\Users\юшевенифени\Desktop\Visual Studio\RoyalPlayingGame_v2\RoyalPlayingGamev2\Assets\Plugins\RoyalPlayingGame.pdb
+C:\Users\юшевенифени\Desktop\Visual Studio\RoyalPlayingGame_v2\RoyalPlayingGamev2\RoyalPlayingGame\obj\Debug\RoyalPlayingGame.dll
+C:\Users\юшевенифени\Desktop\Visual Studio\RoyalPlayingGame_v2\RoyalPlayingGamev2\RoyalPlayingGame\obj\Debug\RoyalPlayingGame.pdb
