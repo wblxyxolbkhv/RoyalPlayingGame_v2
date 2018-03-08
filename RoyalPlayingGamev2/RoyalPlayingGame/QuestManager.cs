@@ -9,12 +9,15 @@ namespace RoyalPlayingGame
 {
     public delegate void QuestHandler(string questID);
     public delegate void QuestStageHandler(string stageID);
-    public delegate void ReplicVisibleChange(int replicID);
+    public delegate void ReplicVisibleChange(string replicID);
     public static class QuestManager
     {
-        private static List<Quest> ActiveQuests = new List<Quest>();
-        private static List<Quest> PassedQuests = new List<Quest>();
-        private static List<Quest> FailedQuest = new List<Quest>();
+        public static List<Quest> ActiveQuests = new List<Quest>();
+        public static List<Quest> PassedQuests = new List<Quest>();
+        public static List<Quest> FailedQuest = new List<Quest>();
+
+        public static List<Quest> QuestRepository = new List<Quest>();
+        
         
 
         // события и методы для дачи/принятия квеста
@@ -43,22 +46,15 @@ namespace RoyalPlayingGame
         {
             if (ActiveQuests.Find(q => q.ID == questID) == null)
             {
+                var quest = QuestRepository.Find(q => q.ID == questID);
                 QuestReceived?.Invoke(questID);
+                ActiveQuests.ForEach(q => q.IsActive = false);
+                ActiveQuests.Add(quest);
+                quest.Start();
+                quest.IsActive = true;
             }
         }
-
-        // события и методы для скрытия/открытия квеста
-        public static event ReplicVisibleChange ReplicHidden;
-        public static event ReplicVisibleChange ReplicShown;
-
-        public static void ReplicHide(int replicID)
-        {
-            ReplicHidden?.Invoke(replicID);
-        }
-        public static void ReplicShow(int replicID)
-        {
-            ReplicShown?.Invoke(replicID);
-        }
+        
 
         // события и методы для отлова событий на окончание квестовой стадии
         public static event QuestStageHandler QuestStageComplited;

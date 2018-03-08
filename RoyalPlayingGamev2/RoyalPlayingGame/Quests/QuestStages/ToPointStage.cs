@@ -2,56 +2,35 @@
 using System.Collections.Generic;
 using System.Text;
 using RoyalPlayingGame.Items;
-//using SimplePhysicalEngine;
 
 namespace RoyalPlayingGame.Quests.QuestStages
 {
     public class ToPointStage : QuestStage
     {
-        public ToPointStage(int moneyReward, int experieneReward, List<Item> itemReward, string name, string description, int index) 
-            : base(moneyReward, experieneReward, itemReward, name, description, index)
+        public ToPointStage(string triggerID)
         {
-            Points = new List<ToPointStageGroup>();
-            //TriggersColiisionsListener.TriggerCollisionDetected += OnTriggerDetected;
+            TriggerID = triggerID;
+            GlobalListener.TriggerDetected += OnQuestTriggerDetected;
+        }
+        public string TriggerID;
+
+        public void OnQuestTriggerDetected(string triggerID)
+        {
+            if (TriggerID == triggerID)
+                Complete();
         }
 
-        public ToPointStage(string name,string description, int index):base(name,description,index)
+        public override string ToString()
         {
-            Points = new List<ToPointStageGroup>();
-            //TriggersColiisionsListener.TriggerCollisionDetected += OnTriggerDetected;
-        }
+            string repr = "";
+            if (IsCompleted)
+                repr = " (1/1)";
+            else
+                repr = " (0/1)";
 
-        public ToPointStage():base()
-        {
-            Points = new List<ToPointStageGroup>();
-            //TriggersColiisionsListener.TriggerCollisionDetected += OnTriggerDetected;
-        }
+            repr = Name + repr;
 
-        private List<ToPointStageGroup> Points { get; set; }
-
-        public ToPointStageGroup GetCurrentPoint()
-        {
-            return Points[0];
-        }
-        public void AddPoint(ToPointStageGroup tpsg)
-        {
-            Points.Add(tpsg);
-        }
-        public void AddPoint(string ID, string objective)
-        {
-            ToPointStageGroup tpsg = new ToPointStageGroup(ID, objective);
-            Points.Add(tpsg);
-        }
-
-        private void OnTriggerDetected(string TriggerID)
-        {
-            foreach (ToPointStageGroup tpsg in Points)
-            {
-                if (tpsg.ID == TriggerID && IsCurrent)
-                {
-                    CallQSCEvent();
-                }
-            }
+            return repr;
         }
     }
 }

@@ -8,27 +8,14 @@ namespace RoyalPlayingGame.Quests.QuestStages
 {
     public class PickItemStage : QuestStage
     {
-        public PickItemStage(int moneyReward, int experieneReward, List<Item> itemReward, string name, string description, int index)
-            : base(moneyReward, experieneReward, itemReward, name, description, index)
-        {
-            Unit.QuestItemPicked += OnItemPicked;
-            Unit.QuestItemDroped += OnItemDroped;
-        }
-
-        public PickItemStage(string name,string description, int index):base(name,description,index)
-        {
-            Unit.QuestItemPicked += OnItemPicked;
-            Unit.QuestItemDroped += OnItemDroped;
-        }
-
         public PickItemStage():base()
         {
-            Unit.QuestItemPicked += OnItemPicked;
-            Unit.QuestItemDroped += OnItemDroped;
+            //Unit.QuestItemPicked += OnItemPicked;
+            //Unit.QuestItemDroped += OnItemDroped;
         }
 
-        private List<PickItemStageGroup> PickedQuestItems { get; set; }
-
+        //private List<PickItemStageGroup> PickedQuestItems { get; set; }
+        /*
         public void AddQuestItem(string ID, string name, int maxAmount, string objective)
         {
             Item item = new Item(ID, name, maxAmount);
@@ -65,8 +52,9 @@ namespace RoyalPlayingGame.Quests.QuestStages
                 if (pisg.Item.Amount < pisg.Item.MaxAmount)
                     return;
             }
-            CallQSCEvent();
+            Complete();
         }
+        */
 
     }
 }

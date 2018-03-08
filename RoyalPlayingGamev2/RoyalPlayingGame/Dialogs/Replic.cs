@@ -10,19 +10,18 @@ namespace RoyalPlayingGame.Dialogs
     {
         public Replic()
         {
-            QuestManager.ReplicHidden += OnAnyReplicHidden;
-            QuestManager.ReplicShown += OnAnyReplicShown;
+            GlobalListener.ReplicHidden += OnAnyReplicHidden;
 
             IsHidden = false;
         }
 
-        private void OnAnyReplicShown(int replicID)
+        private void OnAnyReplicShown(string replicID)
         {
             if (replicID.ToString() == ID)
                 IsHidden = false;
         }
 
-        private void OnAnyReplicHidden(int replicID)
+        private void OnAnyReplicHidden(string replicID)
         {
             if (replicID.ToString() == ID)
                 IsHidden = true;
@@ -54,13 +53,13 @@ namespace RoyalPlayingGame.Dialogs
             get; set;
         } = 0;
         /// <summary>
-        /// квести, который начинается с этой репликой (его ID)
-        /// </summary>
-        public Quest PassedQuest { get; set; } = null;
-        /// <summary>
         /// квести, который заканчивается с этой репликой (его ID)
         /// </summary>
-        public Quest ReceiveQuest { get; set; } = null;
+        public string ReceiveQuest { get; set; } = null;
+        /// <summary>
+        /// квестовая стадия, которая выполнится на этой реплике
+        /// </summary>
+        public string PassedQuestStage { get; set; } = null;
         /// <summary>
         /// возвращает следующую за этой реплику
         /// </summary>

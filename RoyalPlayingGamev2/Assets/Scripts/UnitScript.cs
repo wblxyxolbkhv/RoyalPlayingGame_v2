@@ -1,14 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RoyalPlayingGame;
 
 public class UnitScript : MovingObjectScript {
 
     public GameObject defaultSpell;
 
+    public string Name = "";
+
 	// Use this for initialization
 	protected override void Start () {
         base.Start();
+
+        var quest = new DebugQuest();
+        quest.LoadQuest(null);
+        QuestManager.QuestRepository.Add(quest);
 	}
 
     // Update is called once per frame

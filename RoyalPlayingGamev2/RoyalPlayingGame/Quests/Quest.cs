@@ -53,6 +53,7 @@ namespace RoyalPlayingGame.Quests
             }
             else QuestManager.CompleteQuest(ID);
         }
+        
 
         public List<JournalNote> Notes { get; set; }
         public string ID { get; set; }
@@ -64,10 +65,10 @@ namespace RoyalPlayingGame.Quests
             {
                 isComplited = value;
                 if (!string.IsNullOrEmpty(ShownReplic))
-                    QuestManager.ReplicShow(Convert.ToInt32(ShownReplic));
+                    GlobalListener.ReplicShow(ShownReplic);
 
                 if (!string.IsNullOrEmpty(HiddenReplic))
-                    QuestManager.ReplicHide(Convert.ToInt32(HiddenReplic));
+                    GlobalListener.ReplicHide(HiddenReplic);
             }
         }
         // флаг для обозначения того, что квест помечен как активный и выведен на главный экран
@@ -77,7 +78,6 @@ namespace RoyalPlayingGame.Quests
             get { return isActive; }
             set { isActive = value; }
         }
-        public event Action<bool> QuestCompleted;
         private Player Player { get; set; }
         public List<QuestStage> QuestStages { get; set; }
         private QuestStage currentQuestStage;
@@ -108,9 +108,12 @@ namespace RoyalPlayingGame.Quests
                 CurrentQuestStage.QuestStageCompleted += OnNextStage;
             }
         }
+        public void Start()
+        {
+            CurrentQuestStage = QuestStages[0];
+        }
 
-
-        public void LoadQuest(string path)
+        public virtual void LoadQuest(string path)
         {
             XmlDocument questXml = new XmlDocument();
             questXml.Load(path);
@@ -133,7 +136,7 @@ namespace RoyalPlayingGame.Quests
                 {
                     case "ToPoint":
                         {
-                            ToPointStage tps = new ToPointStage();
+                            ToPointStage tps = new ToPointStage(triggerID: "");
                             tps.ID = ID + StageID;
                             foreach (XmlNode stageParams in xnode)
                             {
@@ -151,17 +154,17 @@ namespace RoyalPlayingGame.Quests
                                         }
                                     case "point":
                                         {
-                                            tps.AddPoint(stageParams.Attributes.GetNamedItem("id").Value, stageParams.Attributes.GetNamedItem("objective").Value);
+                                            //tps.AddPoint(stageParams.Attributes.GetNamedItem("id").Value, stageParams.Attributes.GetNamedItem("objective").Value);
                                             break;
                                         }
                                     case "shownReplic":
                                         {
-                                            tps.ShownReplic = stageParams.Attributes.GetNamedItem("id").Value;
+                                            //tps.ShownReplic = stageParams.Attributes.GetNamedItem("id").Value;
                                             break;
                                         }
                                     case "hiddenReplic":
                                         {
-                                            tps.HiddenReplic = stageParams.Attributes.GetNamedItem("id").Value;
+                                            //tps.HiddenReplic = stageParams.Attributes.GetNamedItem("id").Value;
                                             break;
                                         }
                                 }
@@ -172,7 +175,7 @@ namespace RoyalPlayingGame.Quests
                         }
                     case "ToUnit":
                         {
-                            ToUnitStage tus = new ToUnitStage();
+                            ToUnitStage tus = new ToUnitStage(replicID:"");
                             tus.ID = ID + StageID;
                             foreach (XmlNode stageParams in xnode)
                             switch (stageParams.Name)
@@ -189,12 +192,12 @@ namespace RoyalPlayingGame.Quests
                                         }
                                     case "shownReplic":
                                         {
-                                            tus.ShownReplic = stageParams.Attributes.GetNamedItem("id").Value;
+                                            //tus.ShownReplic = stageParams.Attributes.GetNamedItem("id").Value;
                                             break;
                                         }
                                     case "hiddenReplic":
                                         {
-                                            tus.HiddenReplic = stageParams.Attributes.GetNamedItem("id").Value;
+                                            //tus.HiddenReplic = stageParams.Attributes.GetNamedItem("id").Value;
                                             break;
                                         }
                                 }
@@ -224,17 +227,17 @@ namespace RoyalPlayingGame.Quests
                                             int targetID = (Convert.ToInt32(stageParams.Attributes.GetNamedItem("id").Value));
                                             int reqAmount = (Convert.ToInt32(stageParams.Attributes.GetNamedItem("amount").Value));
                                             string objective = stageParams.Attributes.GetNamedItem("objective").Value;
-                                            kus.AddTarget(targetID, reqAmount,objective);
+                                            //kus.AddTarget(targetID, reqAmount,objective);
                                             break;
                                         }
                                     case "shownReplic":
                                         {
-                                            kus.ShownReplic = stageParams.Attributes.GetNamedItem("id").Value;
+                                            //kus.ShownReplic = stageParams.Attributes.GetNamedItem("id").Value;
                                             break;
                                         }
                                     case "hiddenReplic":
                                         {
-                                            kus.HiddenReplic = stageParams.Attributes.GetNamedItem("id").Value;
+                                            //kus.HiddenReplic = stageParams.Attributes.GetNamedItem("id").Value;
                                             break;
                                         }
                                 }
@@ -266,17 +269,17 @@ namespace RoyalPlayingGame.Quests
                                             int reqAmount = (Convert.ToInt32(stageParams.Attributes.GetNamedItem("amount").Value));
                                             string name = stageParams.Attributes.GetNamedItem("name").Value;
                                             string objective = stageParams.Attributes.GetNamedItem("objective").Value;
-                                            pis.AddQuestItem(itemID, name, reqAmount, objective);
+                                            //pis.AddQuestItem(itemID, name, reqAmount, objective);
                                             break;
                                         }
                                     case "shownReplic":
                                         {
-                                            pis.ShownReplic = stageParams.Attributes.GetNamedItem("id").Value;
+                                            //pis.ShownReplic = stageParams.Attributes.GetNamedItem("id").Value;
                                             break;
                                         }
                                     case "hiddenReplic":
                                         {
-                                            pis.HiddenReplic = stageParams.Attributes.GetNamedItem("id").Value;
+                                            //pis.HiddenReplic = stageParams.Attributes.GetNamedItem("id").Value;
                                             break;
                                         }
                                 }

@@ -28,6 +28,10 @@ namespace RoyalPlayingGame.Dialogs
         {
             get; set;
         }
+        public string Name
+        {
+            get;set;
+        }
         /// <summary>
         /// загрузка диалога из xml
         /// </summary>
@@ -159,10 +163,10 @@ namespace RoyalPlayingGame.Dialogs
             CurrentReplic.CurrentDuration += deltaTime;
             if (CurrentReplic.CurrentDuration > CurrentReplic.Duration)
             {
-                if (CurrentReplic.PassedQuest != null)
-                    QuestManager.CompleteQuest(CurrentReplic.PassedQuest.ID);
+                if (CurrentReplic.PassedQuestStage != null)
+                    QuestManager.CompleteQuestStage(CurrentReplic.PassedQuestStage);
                 if (CurrentReplic.ReceiveQuest != null)
-                    QuestManager.ReceiveQuest(CurrentReplic.ReceiveQuest.ID);
+                    QuestManager.ReceiveQuest(CurrentReplic.ReceiveQuest);
                 CurrentReplic = CurrentReplic.GetNextReplic();
                 if (CurrentReplic!=null)
                     CurrentReplic.CurrentDuration = 0;

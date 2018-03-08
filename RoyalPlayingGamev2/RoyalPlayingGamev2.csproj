@@ -295,19 +295,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Dialogs\DebugBearDialog.cs" />
-    <Compile Include="Assets\Scripts\ChoiceBox.cs" />
-    <Compile Include="Assets\Scripts\DialogManager.cs" />
+    <Compile Include="Assets\Quests\DebugQuest.cs" />
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MainCameraScript.cs" />
     <Compile Include="Assets\Scripts\MovingObjectScript.cs" />
     <Compile Include="Assets\Scripts\MovingSpellScript.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\QuestTrigger.cs" />
     <Compile Include="Assets\Scripts\RepeatSpriteBoundary.cs" />
-    <Compile Include="Assets\Scripts\ScaleScript.cs" />
     <Compile Include="Assets\Scripts\StoneScript.cs" />
     <Compile Include="Assets\Scripts\Talker.cs" />
-    <Compile Include="Assets\Scripts\UIManager.cs" />
+    <Compile Include="Assets\Scripts\U_DialogManager.cs" />
+    <Compile Include="Assets\Scripts\U_GameManager.cs" />
+    <Compile Include="Assets\Scripts\U_QuestManager.cs" />
     <Compile Include="Assets\Scripts\UnitScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

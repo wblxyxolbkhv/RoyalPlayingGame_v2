@@ -10,6 +10,11 @@ public class Talker : MonoBehaviour {
 
     public Dialog currentDialog;
 
+    public string Name
+    {
+        get { return GetComponent<UnitScript>().Name; }
+    }
+
 	// Use this for initialization
 	void Start () {
         currentDialog = new DebugBearDialog();

@@ -8,19 +8,28 @@ namespace RoyalPlayingGame.Quests.QuestStages
 {
     public class ToUnitStage : QuestStage
     {
-        public ToUnitStage(int moneyReward, int experieneReward, List<Item> itemReward, string name, string description, int index) 
-            : base(moneyReward, experieneReward, itemReward, name, description, index)
+        public ToUnitStage(string replicID)
         {
-
+            ReplicID = replicID;
+            QuestManager.QuestStageComplited += OnSomeReplicTalked;
         }
-
-        public ToUnitStage(string name, string description, int index):base(name,description,index)
+        public string ReplicID;
+        private void OnSomeReplicTalked(string replicID)
         {
-
+            if (replicID == ReplicID)
+                Complete();
         }
-        public ToUnitStage():base()
+        public override string ToString()
         {
+            string repr = "";
+            if (IsCompleted)
+                repr = " (1/1)";
+            else
+                repr = " (0/1)";
 
+            repr = Name + repr;
+
+            return repr;
         }
     }
 }
