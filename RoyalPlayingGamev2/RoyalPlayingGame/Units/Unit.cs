@@ -52,7 +52,7 @@ namespace RoyalPlayingGame.Units
         public int RealHealth { get { return realHealth; }
             set
             {
-                realHealth = value;
+                realHealth = Math.Max(value, 0);
                 if (value <= 0)
                 {
                     IsAlive = false;

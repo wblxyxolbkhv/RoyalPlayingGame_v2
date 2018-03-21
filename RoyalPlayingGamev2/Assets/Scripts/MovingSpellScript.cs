@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingSpellScript : MovingObjectScript {
-    
+
+    public int Damage = 10;
 
     // Use this for initialization
     protected override void Start()
@@ -37,5 +38,8 @@ public class MovingSpellScript : MovingObjectScript {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
+        var dmgble = collision.gameObject.GetComponent<Damageble>();
+        if (dmgble != null)
+            dmgble.Damage(Damage);
     }
 }

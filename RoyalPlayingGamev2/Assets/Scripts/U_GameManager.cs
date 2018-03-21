@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using UnityEditor.SceneManagement;
 
 public enum Directions { Left, Right, NoneLeft, NoneRight }
 public class U_GameManager : MonoBehaviour
@@ -15,6 +17,16 @@ public class U_GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        EditorApplication.playModeStateChanged += (playmode) =>
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode && !EditorApplication.isPlaying)
+            {
+                Debug.Log("Auto-Saving scene before entering Play mode: " + EditorApplication.currentScene);
+
+                EditorSceneManager.SaveOpenScenes();
+                AssetDatabase.SaveAssets();
+            }
+        };
         U_GameManager.Instance = this;
     }
     float dTime = 0;
@@ -26,7 +38,7 @@ public class U_GameManager : MonoBehaviour
     }
     private void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 80, 30), fps.ToString());
+        GUI.Label(new Rect(Screen.width - 10, Screen.height - 10, 80, 30), fps.ToString());
     }
     /// <summary>
     /// включает/выключает возможность управление

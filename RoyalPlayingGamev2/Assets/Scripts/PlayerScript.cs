@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using RoyalPlayingGame;
+using RoyalPlayingGame.Units;
 
 public class PlayerScript : UnitScript {
     
@@ -23,6 +23,12 @@ public class PlayerScript : UnitScript {
 
 
 
+
+
+    private Player player;
+
+
+
     
     // префаб для каста
     public GameObject fireball;
@@ -37,6 +43,8 @@ public class PlayerScript : UnitScript {
 
         base.Start();
 
+        player = new Player();
+
         animator = GetComponent<Animator>();
 
         WalkDirection = Directions.NoneRight;
@@ -44,7 +52,7 @@ public class PlayerScript : UnitScript {
     protected void FixedUpdate()
     {
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
-        if (grounded && (Input.GetKeyDown(KeyCode.W)) && interactionEnabled)
+        if (grounded && (Input.GetKey(KeyCode.W)) && interactionEnabled)
         {
             rigidbody2d.AddForce(new Vector2(0f, jumpForce));
         }
@@ -110,6 +118,17 @@ public class PlayerScript : UnitScript {
         base.Cast();
     }
 
-   
+    public int GetHealth()
+    {
+        return player.RealHealth;
+    }
+    public int GetMaxHealth()
+    {
+        return player.Health;
+    }
+    public void Damage(int damage)
+    {
+        player.GotDamaged(damage, DamageType.Physical);
+    }
 
 }

@@ -22,13 +22,18 @@ public class DebugQuest : Quest {
             Name = "Сходи на левый конец света",
             ShownReplics = new List<string> { "DBG_end_replic" }
         };
+        var cs = new ComplexQuestStage
+        {
+            Stages = new List<QuestStage> { s1, s2}
+        };
         var s3 = new ToUnitStage(replicID: "DBG_end_replic")
         {
             ID = "DBG_return",
             Name = "Вернись к медведю"
         };
-        AddQuestStage(s1);
-        AddQuestStage(s2);
+        //AddQuestStage(s1);
+        //AddQuestStage(s2);
+        AddQuestStage(cs);
         AddQuestStage(s3);
     }
     public override void OnQuestStarted()

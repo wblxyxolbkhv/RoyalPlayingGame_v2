@@ -1,9 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoyalPlayingGamev2", "RoyalPlayingGamev2.csproj", "{B5A2A3BF-C8C8-0EAB-DEE4-10404F1C2FED}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8D33E7C3-F73A-D1C9-6526-A78D20F488C8} = {8D33E7C3-F73A-D1C9-6526-A78D20F488C8}
+		{470E6BE6-2666-4922-865B-02DE90C05134} = {470E6BE6-2666-4922-865B-02DE90C05134}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoyalPlayingGamev2.Plugins", "RoyalPlayingGamev2.Plugins.csproj", "{8D33E7C3-F73A-D1C9-6526-A78D20F488C8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{470E6BE6-2666-4922-865B-02DE90C05134} = {470E6BE6-2666-4922-865B-02DE90C05134}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoyalPlayingGame", "RoyalPlayingGame\RoyalPlayingGame.csproj", "{470E6BE6-2666-4922-865B-02DE90C05134}"
 EndProject

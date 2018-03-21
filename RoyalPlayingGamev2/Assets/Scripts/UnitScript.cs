@@ -28,19 +28,18 @@ public class UnitScript : MovingObjectScript {
         if (defaultSpell != null)
         {
             GameObject spell = Instantiate(defaultSpell);
-            spell.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
             switch (WalkDirection)
             {
                 case Directions.Left:
                 case Directions.NoneLeft:
-                    spell.transform.position = new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z);
+                    spell.transform.position = new Vector3(transform.position.x - 0.7f, transform.position.y, transform.position.z);
                     spell.transform.localScale = new Vector3(-1, 1, 1);
                     spell.GetComponent<MovingSpellScript>().Launch(Directions.Left);
                     break;
                 case Directions.Right:
                 case Directions.NoneRight:
-                    spell.transform.position = new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z);
+                    spell.transform.position = new Vector3(transform.position.x + 0.7f, transform.position.y, transform.position.z);
                     spell.GetComponent<MovingSpellScript>().Launch(Directions.Right);
                     break;
             }
