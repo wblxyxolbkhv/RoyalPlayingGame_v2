@@ -42,10 +42,10 @@ namespace RoyalPlayingGame.Quests
             if (HiddenReplics != null)
                 HiddenReplics.ForEach(replicID => GlobalListener.ReplicHide(replicID));
 
+            IsCompleted = true;
             QuestManager.CompleteQuestStage(ID);
             if (QuestStageCompleted != null)
                 QuestStageCompleted(true);
-            IsCompleted = true;
         }
 
         public Predicate<object> CompleteDelegate;

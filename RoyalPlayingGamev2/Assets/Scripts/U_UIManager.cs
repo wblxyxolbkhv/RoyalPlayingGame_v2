@@ -5,12 +5,14 @@ using UnityEngine;
 public class U_UIManager : MonoBehaviour {
 
     public bool isScalesHidden = false;
+    public bool isInventoryShown = false;
 
 
     public static Texture2D greenTexture;
     public static Texture2D blueTexture;
     public static Texture2D blackTexture;
     public static Texture2D transparentTexture;
+    
 
 
     // Use this for initialization
@@ -41,6 +43,7 @@ public class U_UIManager : MonoBehaviour {
             int maxHealth = U_GameManager.Instance.Player.GetMaxHealth();
 
             float healthBarWidth = 140 * (float)health / (float)maxHealth;
+            
 
             var style = GUI.skin.GetStyle("Label");
             style.normal.background = blackTexture;
@@ -50,6 +53,10 @@ public class U_UIManager : MonoBehaviour {
             style.normal.background = transparentTexture;
             style.alignment = TextAnchor.MiddleCenter;
             GUI.Label(new Rect(10, 10, 142, 20), health + "/" + maxHealth, style);
+            
+        }
+        if (isInventoryShown)
+        {
         }
     }
 

@@ -20,7 +20,7 @@ namespace RoyalPlayingGame.Units
             Effects = new List<Effect.Effect>();
             IsAlive = true;
         }
-        public Unit(int ID):this()
+        public Unit(string ID):this()
         {
             this.ID = ID;
         }
@@ -141,7 +141,7 @@ namespace RoyalPlayingGame.Units
         }
         #endregion
 
-        public int ID {get;protected set; }
+        public string ID {get;protected set; }
         public Inventory Inventory { get; set; }
         public List<Effect.Effect> Effects { get; set; }
         public List<Item> Equipment { get; set; }

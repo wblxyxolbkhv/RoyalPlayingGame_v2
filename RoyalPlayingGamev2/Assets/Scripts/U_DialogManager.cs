@@ -47,6 +47,8 @@ public class U_DialogManager : MonoBehaviour
 
     void OnGUI()
     {
+        var style = GUI.skin.GetStyle("Label");
+        style.normal.background = U_UIManager.transparentTexture;
         // если диалог идет в данный момент
         if (CurrentDialog != null && CurrentDialog.IsActive)
         {

@@ -20,13 +20,19 @@ public class DebugQuest : Quest {
         {
             ID = "DBG_To_left_edge",
             Name = "Сходи на левый конец света",
-            ShownReplics = new List<string> { "DBG_end_replic" }
+        };
+        var s3 = new KillUnitStage()
+        {
+            ID = "DBG_carrot",
+            Name = "Убито морковок",
+            RequiredAmount = 1
         };
         var cs = new ComplexQuestStage
         {
-            Stages = new List<QuestStage> { s1, s2}
+            Stages = new List<QuestStage> { s1, s2, s3 },
+            ShownReplics = new List<string> { "DBG_end_replic" }
         };
-        var s3 = new ToUnitStage(replicID: "DBG_end_replic")
+        var s4 = new ToUnitStage(replicID: "DBG_end_replic")
         {
             ID = "DBG_return",
             Name = "Вернись к медведю"
@@ -34,7 +40,7 @@ public class DebugQuest : Quest {
         //AddQuestStage(s1);
         //AddQuestStage(s2);
         AddQuestStage(cs);
-        AddQuestStage(s3);
+        AddQuestStage(s4);
     }
     public override void OnQuestStarted()
     {

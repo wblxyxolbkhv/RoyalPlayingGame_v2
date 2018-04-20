@@ -22,16 +22,15 @@ public class PlayerScript : UnitScript {
     public bool interactionEnabled = true;
 
 
-
+    public LayerMask whereIsTalkers;
 
 
     private Player player;
 
 
 
-    
-    // префаб для каста
-    public GameObject fireball;
+    public float CoolDown;
+    private float currentCoolDown;
 
 
     // для диалогов
@@ -68,7 +67,7 @@ public class PlayerScript : UnitScript {
         {
             move = -1f;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1) && interactionEnabled)
+        if (Input.GetKey(KeyCode.Alpha1) && interactionEnabled)
         {
             Cast();
         }
@@ -76,6 +75,9 @@ public class PlayerScript : UnitScript {
     protected override void Update()
     {
         base.Update();
+
+        currentCoolDown -= Time.deltaTime;
+        currentCoolDown = Math.Max(currentCoolDown, 0);
 
         Vector2 direction = transform.position;
 
@@ -99,7 +101,7 @@ public class PlayerScript : UnitScript {
                 break;
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(rightFreePoint.transform.position, direction, 2);
+        RaycastHit2D hit = Physics2D.Raycast(rightFreePoint.transform.position, direction, 2, whereIsTalkers.value);
         if (hit.collider != null)
         {
             var talker = hit.collider.gameObject.GetComponent<Talker>();
@@ -115,6 +117,9 @@ public class PlayerScript : UnitScript {
     
     protected override void Cast()
     {
+        if (currentCoolDown > 0)
+            return;
+        currentCoolDown = CoolDown;
         base.Cast();
     }
 

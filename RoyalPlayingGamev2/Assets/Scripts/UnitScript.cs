@@ -35,12 +35,12 @@ public class UnitScript : MovingObjectScript {
                 case Directions.NoneLeft:
                     spell.transform.position = new Vector3(transform.position.x - 0.7f, transform.position.y, transform.position.z);
                     spell.transform.localScale = new Vector3(-1, 1, 1);
-                    spell.GetComponent<MovingSpellScript>().Launch(Directions.Left);
+                    spell.GetComponent<MovingSpellScript>().Launch(Directions.Left, gameObject);
                     break;
                 case Directions.Right:
                 case Directions.NoneRight:
                     spell.transform.position = new Vector3(transform.position.x + 0.7f, transform.position.y, transform.position.z);
-                    spell.GetComponent<MovingSpellScript>().Launch(Directions.Right);
+                    spell.GetComponent<MovingSpellScript>().Launch(Directions.Right, gameObject);
                     break;
             }
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RoyalPlayingGame.Units;
+using RoyalPlayingGame;
 using Assets.Utils;
 
 /// <summary>
@@ -12,13 +13,15 @@ public class SimpleEnemyScript : MovingObjectScript
     public int damage;
     public TurnPointScript turnPoint;
 
-    private Unit enemy = new RoyalPlayingGame.Units.Enemy(100, 10, 10, 10, 1, 1);
+    private Unit enemy;
 
     // Use this for initialization
     protected override void Start()
     {
         base.Start();
         move = 1;
+
+        enemy = new RoyalPlayingGame.Units.Enemy("DBG_carrot");
 
         turnPoint.Turn += OnTurn;
         enemy.Death += OnEnemyDeath;
@@ -29,7 +32,8 @@ public class SimpleEnemyScript : MovingObjectScript
         collider2d.enabled = false;
         turnPoint.Disable();
         rigidbody2d.bodyType = RigidbodyType2D.Static;
-        animator.SetBool("death", true);
+        GlobalListener.SomeUnitDeath(enemy);
+        //animator.SetBool("death", true);
     }
 
     private void OnTurn(Collider2D collision)

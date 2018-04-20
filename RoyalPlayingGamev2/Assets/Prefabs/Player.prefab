@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 6
-  defaultSpell: {fileID: 1269581183493892, guid: d47fe54f1d12bd140815ad61aca41e8d,
+  defaultSpell: {fileID: 1157302312950510, guid: 2b021f96326947241b2b218e8fe10ea0,
     type: 2}
   Name: 
   jumpForce: 6000
@@ -177,7 +177,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483904
   interactionEnabled: 1
-  fireball: {fileID: 1269581183493892, guid: d47fe54f1d12bd140815ad61aca41e8d, type: 2}
+  CoolDown: 1
   rightFreePoint: {fileID: 1966202887414396}
 --- !u!114 &114822494382352442
 MonoBehaviour:

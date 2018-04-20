@@ -13,29 +13,23 @@ namespace RoyalPlayingGame.Quests.QuestStages
         {
             GlobalListener.DeathSomeUnit += OnSomeUnitDeath;
         }
-
-
-        public Unit Target { get; set; }
+        
+        public string TargetID { get; set; }
         public int RequiredAmount { get; set; }
         public int CurrentAmount { get; set; }
         
         private void OnSomeUnitDeath(Unit unit)
         {
-            /*
-            if (!IsCurrent)
-                return;
-            foreach(KillUnitStageGroup kusg in Targets)
-            {
-                if (kusg.Target.ID == unit.ID)
-                    kusg.CurrentAmount++;
-            }
-            foreach(KillUnitStageGroup kusg in Targets)
-            {
-                if (kusg.CurrentAmount < kusg.RequiredAmount)
-                    return;
-            }
-            Complete();
-            */
+            if (unit.ID == TargetID && RequiredAmount > CurrentAmount)
+                CurrentAmount++;
+            if (RequiredAmount == CurrentAmount)
+                Complete();
+            
+        }
+
+        public override string ToString()
+        {
+            return Name + string.Format("({0}/{1})", CurrentAmount, RequiredAmount);
         }
     }
 }

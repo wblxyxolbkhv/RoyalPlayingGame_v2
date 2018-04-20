@@ -28,7 +28,7 @@ public class DebugBearDialog : Dialog {
         };
         var r2 = new NPCReplic
         {
-            Phrase = "Конечно, можешь сделать кое что для меня. Хочешь прогуляться?",
+            Phrase = "Конечно, можешь сделать кое что для меня. Прогуляйся и замочи морковку.",
             Duration = 2000
         };
         var a3 = new Answer
