@@ -7,10 +7,13 @@ namespace RoyalPlayingGame.Units
 {
     public class Enemy:Unit
     {
-        public Enemy(string id, int health, int intellegence, int strength, int agility, int physicalDamageReduction, int magicalDamegeReduction):base()
+        public Enemy(string id, int health, int intellegence, 
+            int strength, int agility, 
+            int physicalDamageReduction, 
+            int magicalDamegeReduction):base()
         {
             ID = id;
-            Health = RealHealth = health;
+            MaxHealth = Health = health;
             Strength = RealStrength = strength;
             Intelligence = RealIntelligence = intellegence;
             Agility = RealAgility = agility;
@@ -21,7 +24,7 @@ namespace RoyalPlayingGame.Units
         
         public Enemy(string id):base()
         {
-            Health = RealHealth = 30;
+            MaxHealth = Health = 30;
             Strength = RealStrength = 3;
             Intelligence = RealIntelligence = 4;
             Agility = RealAgility = 4;

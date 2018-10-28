@@ -38,8 +38,8 @@ namespace RoyalPlayingGame.Units
         //public static event QuestItemHendler QuestItemDroped;
         public bool IsAlive { get; set; }
 
-        public int Health { get; set; }
-        public int Mana { get; set; }
+        public int MaxHealth { get; set; }
+        public int MaxMana { get; set; }
         public int Strength { get; protected set; }
         public int Agility { get; protected set; }
         public int Intelligence { get; protected set; }
@@ -49,7 +49,7 @@ namespace RoyalPlayingGame.Units
         // базовый урон для крипов, бьющих с руки
         public double BaseDamage { get; set; }
 
-        public int RealHealth { get { return realHealth; }
+        public int Health { get { return realHealth; }
             set
             {
                 realHealth = Math.Max(value, 0);
@@ -61,7 +61,7 @@ namespace RoyalPlayingGame.Units
                 }
             }
         }
-        public int RealMana
+        public int Mana
         {
             get
             {
@@ -166,12 +166,12 @@ namespace RoyalPlayingGame.Units
         {
             if (DType == DamageType.Physical)
             {
-                RealHealth = RealHealth - (damage - (damage * PhysicalDamageReduction / 100));
+                Health = Health - (damage - (damage * PhysicalDamageReduction / 100));
                 return (damage - (damage * PhysicalDamageReduction / 100));
             }
             else
             {
-                RealHealth = RealHealth - (damage - (damage * MagicalDamageReduction / 100));
+                Health = Health - (damage - (damage * MagicalDamageReduction / 100));
                 return (damage - (damage * MagicalDamageReduction / 100));
             }
         }
@@ -186,8 +186,8 @@ namespace RoyalPlayingGame.Units
             foreach (Effect.Effect effect in Effects)
             {
                 RealAgility += effect.DAgility;
-                RealHealth += effect.DHealth;
-                RealMana += effect.DMana;
+                Health += effect.DHealth;
+                Mana += effect.DMana;
                 RealStrength += effect.DStrength;
                 RealIntelligence += effect.DIntelligence;
                 RealMagicalDamageReduction += effect.DMagicalDamageReduction;
@@ -230,14 +230,14 @@ namespace RoyalPlayingGame.Units
         }
         public virtual Spell.Spell CastSpell(Spell.Spell spell)
         {
-            if (RealMana - spell.ManaCost < 0)
+            if (Mana - spell.ManaCost < 0)
                 throw new Exceptions.NoManaException();
             else if (spell.Active == true)
             {
                 spell.Active = false;
                 spell.CurrentCoolDown = spell.CoolDown;
                 //spell.coolDownTimer.Start();
-                RealMana -= spell.ManaCost;
+                Mana -= spell.ManaCost;
                 return spell;
             }
             throw new Exceptions.SpellCoolDownException();

@@ -9,7 +9,7 @@ namespace RoyalPlayingGame.Interfaces
 {
     public interface ITargetObject
     {
-        int Health { get; set; }
+        int MaxHealth { get; set; }
         bool IsAlive { get; set; }
         int GotDamaged(int damage, Units.DamageType DType);
         

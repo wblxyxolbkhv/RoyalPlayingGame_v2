@@ -15,8 +15,8 @@ namespace RoyalPlayingGame.Units
             
             QuestJournal = new PlayerJournal();
             Experience = 0;
-            Health = RealHealth = 100;
-            Mana = RealMana = 10000;
+            MaxHealth = Health = 100;
+            MaxMana = Mana = 10000;
             Agility = RealAgility = 4;
             Intelligence = RealIntelligence = 1000;
             Strength = RealStrength = 4;

@@ -298,30 +298,29 @@
   <ItemGroup>
     <Compile Include="Assets\Dialogs\DebugBearDialog.cs" />
     <Compile Include="Assets\Quests\DebugQuest.cs" />
-    <Compile Include="Assets\Scripts\Damageble.cs" />
-    <Compile Include="Assets\Scripts\EnemyScript.cs" />
-    <Compile Include="Assets\Scripts\InventoryPage.cs" />
-    <Compile Include="Assets\Scripts\ItemDragHandler.cs" />
-    <Compile Include="Assets\Scripts\MainCameraScript.cs" />
-    <Compile Include="Assets\Scripts\MovingObjectScript.cs" />
-    <Compile Include="Assets\Scripts\MovingSpellScript.cs" />
-    <Compile Include="Assets\Scripts\PlayerScript.cs" />
-    <Compile Include="Assets\Scripts\QuestTrigger.cs" />
-    <Compile Include="Assets\Scripts\RepeatSpriteBoundary.cs" />
-    <Compile Include="Assets\Scripts\SimpleEnemyScript.cs" />
-    <Compile Include="Assets\Scripts\SlotHandler.cs" />
-    <Compile Include="Assets\Scripts\StaticSpell.cs" />
-    <Compile Include="Assets\Scripts\StoneScript.cs" />
-    <Compile Include="Assets\Scripts\Talker.cs" />
-    <Compile Include="Assets\Scripts\TurnPointScript.cs" />
-    <Compile Include="Assets\Scripts\U_DialogManager.cs" />
-    <Compile Include="Assets\Scripts\U_GameManager.cs" />
-    <Compile Include="Assets\Scripts\U_Items_Repository.cs" />
-    <Compile Include="Assets\Scripts\U_QuestManager.cs" />
-    <Compile Include="Assets\Scripts\UnitScript.cs" />
-    <Compile Include="Assets\Scripts\U_UIManager.cs" />
+    <Compile Include="Assets\Scripts\Debug\StoneScript.cs" />
+    <Compile Include="Assets\Scripts\Deprecated\RepeatSpriteBoundary.cs" />
+    <Compile Include="Assets\Scripts\Globals\U_DialogManager.cs" />
+    <Compile Include="Assets\Scripts\Globals\U_GameManager.cs" />
+    <Compile Include="Assets\Scripts\Globals\U_Items_Repository.cs" />
+    <Compile Include="Assets\Scripts\Globals\U_QuestManager.cs" />
+    <Compile Include="Assets\Scripts\Globals\U_UIManager.cs" />
+    <Compile Include="Assets\Scripts\Service\ItemDragHandler.cs" />
+    <Compile Include="Assets\Scripts\Service\MainCameraScript.cs" />
+    <Compile Include="Assets\Scripts\Service\QuestTrigger.cs" />
+    <Compile Include="Assets\Scripts\Service\SlotHandler.cs" />
+    <Compile Include="Assets\Scripts\Spells\RPGMovingSpell.cs" />
+    <Compile Include="Assets\Scripts\Spells\RPGStaticSpell.cs" />
+    <Compile Include="Assets\Scripts\Units\RPGEnemy.cs" />
+    <Compile Include="Assets\Scripts\Units\RPGPlayer.cs" />
+    <Compile Include="Assets\Scripts\Units\RPGMovingObject.cs" />
+    <Compile Include="Assets\Scripts\Units\RPGSimpleEnemy.cs" />
+    <Compile Include="Assets\Scripts\Units\RPGTalker.cs" />
+    <Compile Include="Assets\Scripts\Units\RPGTurnPoint.cs" />
+    <Compile Include="Assets\Scripts\Units\RPGUnit.cs" />
     <Compile Include="Assets\Utils\Extensions.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>
